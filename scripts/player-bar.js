@@ -21,35 +21,37 @@
 
     });
 
-/*
-You've already written an event handler for the time control input. Now, write an event handler
-for #volume-control input that calls player.setVolume() on input and passes it event.target.value.
-*/
-$('#volume-control input').on('input', function (event) {
-    player.setVolume(event.target.value);
+    /*
+    You've already written an event handler for the time control input. Now, write an event handler
+    for #volume-control input that calls player.setVolume() on input and passes it event.target.value.
+    */
+    $('#volume-control input').on('input', function (event) {
+        player.setVolume(event.target.value);
 
-});
+    });
 
-        setInterval( () => {
-            if (player.playState !== 'playing') {return;}
-            const currentTime = player.getTime();
-            const duration = player.getDuration();
-            const percent = (currentTime / duration) * 100;
-            //console.log('hello');
-            $('#time-control .current-time').text( currentTime);
-            $('#time-conrol input').val(percent);
-        },1000);
-    
-}
+    setInterval(() => {
+        if (player.playState !== 'playing') { return; }
+        const currentTime = player.getTime();
+        const duration = player.getDuration();
+        const percent = (currentTime / duration) * 100;
+        //console.log(percent);
+        $('#time-control .current-time').text(currentTime);
+        $('#time-control input').val(percent);
+    }, 1000);
+
+
 
     $('button#previous').on('click', function () {
-        if (player.playState !== 'playing') { return; }        
+        if (player.playState !== 'playing') { return; }
         const currentSongIndex = album.songs.indexOf(player.currentlyPlaying);
-        const previousSongIndex = currentSongIndex - 1;        
+        const previousSongIndex = currentSongIndex - 1;
         if (previousSongIndex < 0) { return; }
-        const previousSong = album.songs[previousSongIndex];        
+        const previousSong = album.songs[previousSongIndex];
         //player.playPause(previousSong);
         helper.playPauseAndUpdate(previousSong);
         //console.log('hello');
     });
+
+}
 

@@ -8,10 +8,10 @@ and update the total time. Replace every call of player.playPause with helper.pl
 class Helper {
 
     playPauseAndUpdate(song) {
-        console.log('hello');
-        player.playPause(song);
-        const duration = player.getDuration();       
+        //console.log('hello');
+        const duration = player.getDuration();
         $('#time-control .total-time').text(duration);
+        player.playPause(song);
     }
 }
 
